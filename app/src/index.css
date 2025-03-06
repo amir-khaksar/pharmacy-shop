@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+
+@theme {
+  --color-primary: oklch(0.488 0.243 264.376);
+  --color-secondary: #ecf6ff;
+  --color-bgDark: #111827;
+}
+
+@utility container {
+  margin-right: auto;
+  margin-left: auto;
+}
+
