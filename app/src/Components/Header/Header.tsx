@@ -1,6 +1,5 @@
 import Navbar from "../Navbar/Navbar";
-import background from "../../assets/Images/pharmacy.jpg";
-import backgroundImg from "../../assets/Images/header2.jpg";
+// import background from "../../assets/Images/pharmacy.jpg";
 import Landing from "../Landing/Landing";
 import {useEffect, useState} from "react";
 
@@ -28,11 +27,11 @@ const Header = () => {
             {/* Background Image */}
             {
                 isMobile ? <div className="w-full h-[40vh] bg-center bg-no-repeat relative" style={{
-                    backgroundImage: `url(${backgroundImg})`
+                    backgroundImage: `url(/images/login.jpg)`,
                 }}></div> : <div
                     className="h-[90vh] w-full bg-cover bg-center bg-no-repeat relative"
                     style={{
-                        backgroundImage: `url(${background})`,
+                        backgroundImage: `url(/images/login.jpg)`,
                         clipPath:
                             "polygon(0 0, 100% 0, 100% calc(100% - 20px), 50% 100%, 0 calc(100% - 20px))",
                     }}

@@ -4,7 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 export default function Landing() {
     return (
         <div
-            className="absolute top-[5%] sm:top-[20%] lg:top-[25%] inset-x-0 flex items-center justify-center font-sansBold mt-16">
+            className="absolute top-[5%] sm:top-[18%] lg:top-[20%] inset-x-0 flex items-center justify-center font-sansBold mt-16">
             <div
                 className="flex w-full px-4 sm:px-6 max-w-[440px] sm:max-w-[668px] lg:max-w-[840px] flex-col items-center justify-center">
 
@@ -48,11 +48,11 @@ export default function Landing() {
                         </a>
                         <button
                             className="px-6 py-2 bg-purple-500 text-white rounded-full hover:bg-purple-600 transition-colors text-sm">
-                            💬 مشاوره آنلایل
+                            💬 مشاوره آنلاین
                         </button>
                     </div>
 
-                    <div className="bg-purple-500/10 p-4 rounded-2xl border border-purple-500/20 text-center">
+                    <div className="bg-purple-800/10 p-4 rounded-2xl border border-purple-500/20 text-center">
                         <p className="text-blue-600 font-medium mb-1">آدرس مرکز اصلی</p>
                         <p className="text-purple-600 text-sm">اصفهان، خیابان چهارباغ پایین، پلاک ۱</p>
                         <p className="text-purple-500 text-xs mt-2">ساعات کاری: ۸ صبح تا ۱۲ شب</p>
@@ -68,7 +68,7 @@ export default function Landing() {
                         <div className="p-2 bg-blue-500/10 rounded-lg">
                             <p className="text-blue-600 text-sm">چت آنلاین</p>
                         </div>
-                        <div className="p-2 bg-purple-500/10 rounded-lg">
+                        <div className="p-2 bg-purple-800/10 rounded-lg">
                             <p className="text-purple-600 text-sm">پشتیبانی ۲۴/۷</p>
                         </div>
                     </div>
