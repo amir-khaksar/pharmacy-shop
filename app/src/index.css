@@ -4,7 +4,7 @@
 
 
 @theme {
-  --color-primary: oklch(0.488 0.243 264.376);
+  --color-primary: #3B82F6;
   --color-secondary: #ecf6ff;
   --color-bgDark: #111827;
 }
