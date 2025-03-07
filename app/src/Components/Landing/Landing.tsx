@@ -1,5 +1,5 @@
 import {Typewriter} from "react-simple-typewriter";
-import SearchIcon from "@mui/icons-material/Search";
+// import SearchIcon from "@mui/icons-material/Search";
 
 export default function Landing() {
     return (
@@ -24,20 +24,20 @@ export default function Landing() {
                     به کمک چت هوشمند و فروشگاه به راحتی خود را درمان کنید
                 </p>
 
-                <form
-                    className="relative w-full max-w-[90vw] sm:max-w-[75vw] lg:max-w-[60vw] my-4 sm:my-6 bg-white rounded-full overflow-hidden shadow-lg hover:shadow-purple-500/20 transition-shadow duration-300">
-                    <input
-                        className="w-full h-12 sm:h-14 lg:h-[70px] text-xs sm:text-sm lg:text-base text-gray-700 outline-none px-4 pr-16 placeholder-blue-400/80 focus:ring-2 focus:ring-purple-300"
-                        type="text"
-                        placeholder="دنبال چی میگردی؟"
-                    />
-                    <button
-                        type="submit"
-                        className="absolute top-1/2 -translate-y-1/2 left-2 sm:left-4 p-2 sm:p-3 bg-purple-500 text-white rounded-full transition-all hover:bg-purple-600 active:scale-95 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2"
-                    >
-                        <SearchIcon className="w-5 h-5 sm:w-6 sm:h-6"/>
-                    </button>
-                </form>
+                {/*<form*/}
+                {/*    className="relative w-full max-w-[90vw] sm:max-w-[75vw] lg:max-w-[60vw] my-4 sm:my-6 bg-white rounded-full overflow-hidden shadow-lg hover:shadow-purple-500/20 transition-shadow duration-300">*/}
+                {/*    <input*/}
+                {/*        className="w-full h-12 sm:h-14 lg:h-[70px] text-xs sm:text-sm lg:text-base text-gray-700 outline-none px-4 pr-16 placeholder-blue-400/80 focus:ring-2 focus:ring-purple-300"*/}
+                {/*        type="text"*/}
+                {/*        placeholder="دنبال چی میگردی؟"*/}
+                {/*    />*/}
+                {/*    <button*/}
+                {/*        type="submit"*/}
+                {/*        className="absolute top-1/2 -translate-y-1/2 left-2 sm:left-4 p-2 sm:p-3 bg-purple-500 text-white rounded-full transition-all hover:bg-purple-600 active:scale-95 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2"*/}
+                {/*    >*/}
+                {/*        <SearchIcon className="w-5 h-5 sm:w-6 sm:h-6"/>*/}
+                {/*    </button>*/}
+                {/*</form>*/}
 
                 <div className="mt-8 w-full max-w-[440px] sm:max-w-[668px] lg:max-w-[840px] space-y-4">
 
