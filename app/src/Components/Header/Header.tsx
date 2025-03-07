@@ -27,11 +27,11 @@ const Header = () => {
             {/* Background Image */}
             {
                 isMobile ? <div className="w-full h-[40vh] bg-center bg-no-repeat relative" style={{
-                    backgroundImage: `url(/images/login.jpg)`,
+                    backgroundImage: `url(/images/back4.jpg)`,
                 }}></div> : <div
                     className="h-[90vh] w-full bg-cover bg-center bg-no-repeat relative"
                     style={{
-                        backgroundImage: `url(/images/login.jpg)`,
+                        backgroundImage: `url(/images/back4.jpg)`,
                         clipPath:
                             "polygon(0 0, 100% 0, 100% calc(100% - 20px), 50% 100%, 0 calc(100% - 20px))",
                     }}

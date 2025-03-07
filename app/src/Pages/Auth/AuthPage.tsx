@@ -57,7 +57,7 @@ const AuthPage = () => {
         <div
             className="flex h-screen items-center justify-center bg-cover bg-center transition-colors duration-500 dark:bg-gray-900">
             <div
-                className="relative w-[750px] h-[450px] bg-white dark:bg-gray-800 dark:text-white bg-opacity-90 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden">
+                className="relative w-[780px] h-[490px] bg-white dark:bg-gray-800 dark:text-white bg-opacity-90 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden">
                 <div className="flex w-full h-full relative">
                     {/* Animated Background Section */}
                     <motion.div

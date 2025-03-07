@@ -42,12 +42,12 @@ export default function Landing() {
                 <div className="mt-8 w-full max-w-[440px] sm:max-w-[668px] lg:max-w-[840px] space-y-4">
 
                     <div className="flex flex-wrap gap-3 justify-center">
-                        <a href="tel:02112345678"
-                           className="px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors text-sm">
+                        <a href="#"
+                           className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
                             مشاهده محصولات
                         </a>
                         <button
-                            className="px-6 py-2 bg-purple-500 text-white rounded-full hover:bg-purple-600 transition-colors text-sm">
+                            className="px-6 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors text-sm">
                             💬 مشاوره آنلاین
                         </button>
                     </div>

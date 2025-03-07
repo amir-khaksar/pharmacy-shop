@@ -17,7 +17,7 @@ export default function NavbarDesktop() {
 
     return (
         <header
-            className="flex items-center justify-between w-[85%] h-24 mx-auto backdrop-blur-[25px] mt-5 rounded-3xl px-3 py-5 shadow-xs">
+            className="flex items-center justify-between w-[85%] h-24 mx-auto backdrop-blur-[35px] mt-5 rounded-3xl px-3 py-5 shadow-xs">
             <div className="flex items-center justify-between w-full">
                 <nav className="flex items-center justify-between gap-x-10">
                     <div>

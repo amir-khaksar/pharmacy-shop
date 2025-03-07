@@ -110,7 +110,7 @@ export default function NavbarMobile() {
                     {/* Nav Footer */}
                     <div
                         className='space-y-6 text-zinc-600 dark:text-white pt-8 px-2.5 mb-8 border-t border-t-gray-100 dark:border-t-white/10 font-medium'>
-                        <Link to="/login" className='inline-flex items-center gap-x-2'>
+                        <Link to="/auth" className='inline-flex items-center gap-x-2'>
                             <svg className="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                  strokeWidth={1.5} stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round"
