@@ -44,7 +44,6 @@ export default function OTPForm() {
                 </div>
 
                 <button
-                    onClick={() => console.log(otp)}
                     className={`
                     w-full
                     py-3
