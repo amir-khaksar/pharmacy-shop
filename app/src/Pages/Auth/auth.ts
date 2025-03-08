@@ -1,12 +1,12 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-const baseUrl = "http://localhost:8000/api/auth/";
+const baseUrl = "http://127.0.0.1:8000/accounts/";
 
 export const login = async (phone: string, password: string) => {
     const userInfo = {
         phone_number: phone,
-        password: password,
+        password,
     };
 
     return await axios.post(`${baseUrl}login/`, userInfo, {
@@ -45,17 +45,17 @@ export const register = async (fullName: string, phone: string, email: string, p
     const newUserInfo = {
         full_name: fullName,
         phone_number: phone,
-        email: email,
-        password: password,
+        email,
+        password,
     };
 
     return await axios.post(`${baseUrl}register/`, newUserInfo, {
         headers: {
             "Content-Type": "application/json",
         },
-        withCredentials: true
     })
         .then((response) => {
+            console.log(response.data)
             return response.data;
         })
         .catch((error) => {
@@ -82,13 +82,14 @@ export const register = async (fullName: string, phone: string, email: string, p
 
 export const registerWithCode = (code: string) => {
     const userCode = {
-        code: code
+        code,
     }
 
-    return axios.post(`${baseUrl}register/`, userCode, {
+    return axios.post(`${baseUrl}verify_code/`, userCode, {
         headers: {
             "Content-Type": "application/json",
         },
+        withCredentials: true
     })
         .then(response => {
             Swal.fire({
