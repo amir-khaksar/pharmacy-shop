@@ -2,6 +2,7 @@ import {useState} from "react";
 import {motion} from "framer-motion";
 import {useForm, SubmitHandler} from "react-hook-form";
 import {login, register} from "./auth.ts";
+import { useNavigate } from "react-router-dom";
 
 type LoginFormInputs = {
     phone: string;
@@ -17,6 +18,8 @@ type RegisterFormInputs = {
 
 const AuthPage = () => {
     const [isLogin, setIsLogin] = useState(true);
+
+    const navigate = useNavigate();
 
     const {
         register: loginRegister,
@@ -36,6 +39,7 @@ const AuthPage = () => {
 
         try {
             await login(phone, password);
+            navigate("/")
         } catch (error) {
             console.error("Login failed:", error);
         }
@@ -48,6 +52,7 @@ const AuthPage = () => {
 
         try {
             await register(fullName, phone, email, password);
+            navigate("/auth/otp");
         } catch (error) {
             console.error("Registration failed:", error);
         }

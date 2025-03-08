@@ -1,26 +1,43 @@
+import * as React from "react";
 import {useState} from "react";
 import OtpInput from "react-otp-input";
+import { registerWithCode } from "./auth.ts";
+import {useNavigate} from "react-router-dom";
 
 export default function OTPForm() {
     const [otp, setOtp] = useState("");
 
+    const navigate = useNavigate();
+
+    const registerWithOtp = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        try {
+            await registerWithCode(otp)
+            navigate("/")
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    }
+
     return (
-        <div className="h-screen flex items-center justify-center">
-            <div
-                className="flex flex-col items-center gap-8 p-6 rounded-2xl bg-white dark:bg-gray-800 shadow-xl w-full max-w-md">
-                <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">
-                    تایید شماره موبایل
-                </h2>
-                <div dir="ltr">
-                    <OtpInput
-                        value={otp}
-                        onChange={setOtp}
-                        numInputs={6}
-                        renderSeparator={<span className="mx-3 text-gray-400 dark:text-gray-500">-</span>}
-                        renderInput={(props) => (
-                            <input
-                                {...props}
-                                className={`
+        <form onSubmit={registerWithOtp}>
+            <div className="h-screen flex items-center justify-center">
+                <div
+                    className="flex flex-col items-center gap-8 p-6 rounded-2xl bg-white dark:bg-gray-800 shadow-xl w-full max-w-md">
+                    <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100">
+                        تایید شماره موبایل
+                    </h2>
+                    <div dir="ltr">
+                        <OtpInput
+                            value={otp}
+                            onChange={setOtp}
+                            numInputs={6}
+                            renderSeparator={<span className="mx-3 text-gray-400 dark:text-gray-500">-</span>}
+                            renderInput={(props) => (
+                                <input
+                                    {...props}
+                                    className={`
                                     w-12 h-12 sm:w-14 sm:h-14
                                     text-lg sm:text-xl
                                     text-center
@@ -38,13 +55,13 @@ export default function OTPForm() {
                                     focus:ring-purple-200
                                     dark:focus:ring-purple-500/30
                                 `}
-                            />
-                        )}
-                    />
-                </div>
+                                />
+                            )}
+                        />
+                    </div>
 
-                <button
-                    className={`
+                    <button
+                        className={`
                     w-full
                     py-3
                     text-lg
@@ -60,14 +77,14 @@ export default function OTPForm() {
                     shadow-md
                     hover:shadow-lg
                 `}
-                >
-                    تایید کد
-                </button>
+                    >
+                        تایید کد
+                    </button>
 
-                <p className="text-sm text-gray-600 dark:text-gray-400">
-                    کد دریافت نکردید؟
-                    <button
-                        className={`
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                        کد دریافت نکردید؟
+                        <button
+                            className={`
                         mr-2
                         text-blue-500
                         hover:text-blue-600
@@ -75,11 +92,12 @@ export default function OTPForm() {
                         dark:hover:text-blue-300
                         transition-colors
                     `}
-                    >
-                        ارسال مجدد
-                    </button>
-                </p>
+                        >
+                            ارسال مجدد
+                        </button>
+                    </p>
+                </div>
             </div>
-        </div>
+        </form>
     );
 }

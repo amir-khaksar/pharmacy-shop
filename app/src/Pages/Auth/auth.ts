@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Swal from 'sweetalert2';
 
-const apiUrl = "http://localhost:8000/api/auth/";
+const baseUrl = "http://localhost:8000/api/auth/";
 
 export const login = async (phone: string, password: string) => {
     const userInfo = {
@@ -9,7 +9,7 @@ export const login = async (phone: string, password: string) => {
         password: password,
     };
 
-    return await axios.post(`${apiUrl}login/`, userInfo, {
+    return await axios.post(`${baseUrl}login/`, userInfo, {
         headers: {
             "Content-Type": "application/json",
         }
@@ -49,7 +49,7 @@ export const register = async (fullName: string, phone: string, email: string, p
         password: password,
     };
 
-    return await axios.post(`${apiUrl}/register/`, newUserInfo, {
+    return await axios.post(`${baseUrl}register/`, newUserInfo, {
         headers: {
             "Content-Type": "application/json",
         }
@@ -76,3 +76,39 @@ export const register = async (fullName: string, phone: string, email: string, p
             throw error;
         });
 };
+
+export const registerWithCode = (code: string) => {
+    const userCode = {
+        code: code
+    }
+
+    axios.defaults.withCredentials = true;
+
+    return axios.post(`${baseUrl}register/`, userCode, {
+        headers: {
+            "Content-Type": "application/json",
+        },
+        withCredentials: true
+    })
+        .then(response => {
+            Swal.fire({
+                title: "ثبت نام با موفقیت انجام شد",
+                icon: "success",
+                confirmButtonText: "تأیید",
+            });
+            return response.data;
+        })
+        .catch((error) => {
+            if (error.response) {
+                console.log("Response error:", error.response.data);
+                Swal.fire({
+                    title: "خطا در ثبت نام وجود دارد",
+                    icon: "error",
+                    confirmButtonText: "متوجه شدم"
+                });
+            } else {
+                console.error("Error:", error.message);
+            }
+            throw error;
+        })
+}
