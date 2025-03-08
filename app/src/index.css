@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "keen-slider/keen-slider.min.css";
+
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -14,6 +16,3 @@
   margin-left: auto;
 }
 
-/*h1 {*/
-/*  font-size: clamp(2rem, 5vw, 5rem);*/
-/*}*/

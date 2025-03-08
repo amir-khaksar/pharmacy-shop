@@ -25,16 +25,16 @@ export default function NavbarDesktop() {
                     </div>
                     <ul className="flex gap-x-5 lg:gap-x-9 h-full text-xl text-gray-300">
                         <li>
-                            <a href="#">صفحه اصلی</a>
+                            <Link to="/">صفحه اصلی</Link>
                         </li>
                         <li>
-                            <a href="#">فروشگاه</a>
+                            <Link to="/shop">فروشگاه</Link>
                         </li>
                         <li>
-                            <a href="#">درباره ما</a>
+                            <Link to="#">درباره ما</Link>
                         </li>
                         <li>
-                            <a href="#">تماس با ما</a>
+                            <Link to="#">تماس با ما</Link>
                         </li>
                     </ul>
                 </nav>

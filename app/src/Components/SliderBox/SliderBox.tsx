@@ -3,7 +3,7 @@ import { faChalkboardTeacher, faUsers, faArrowLeft } from "@fortawesome/free-sol
 
 const ProductBox = () => {
     return (
-        <div className="w-full p-2 sm:w-[45%] lg:w-[30%] xl:w-[30%] 2xl:w-[24%] group">
+        <div className="w-full p-2 group transition-all duration-300 hover:scale-[1.02]">
             <div className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2 h-full flex flex-col">
                 <div className="relative overflow-hidden">
                     <img
@@ -12,7 +12,6 @@ const ProductBox = () => {
                         className="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300"
                     />
                 </div>
-
                 <div className="p-4 flex flex-col flex-grow space-y-4">
                     <h3 className="text-lg font-bold text-gray-800 dark:text-white hover:text-primary transition-colors">
                         <a href="#">قرص سر درد</a>

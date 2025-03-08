@@ -53,9 +53,10 @@ export const register = async (fullName: string, phone: string, email: string, p
         headers: {
             "Content-Type": "application/json",
         },
+        withCredentials: true
     })
         .then((response) => {
-            console.log(response.data)
+            console.log(response)
             return response.data;
         })
         .catch((error) => {
