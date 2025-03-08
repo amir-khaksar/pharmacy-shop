@@ -52,26 +52,29 @@ export const register = async (fullName: string, phone: string, email: string, p
     return await axios.post(`${baseUrl}register/`, newUserInfo, {
         headers: {
             "Content-Type": "application/json",
-        }
+        },
+        withCredentials: true
     })
         .then((response) => {
-            Swal.fire({
-                title: "ثبت نام با موفقیت انجام شد",
-                icon: "success",
-                confirmButtonText: "تأیید",
-            });
             return response.data;
         })
         .catch((error) => {
-            if (error.response) {
+            if (axios.isAxiosError(error) && error.response) {
                 console.log("Response error:", error.response.data);
                 Swal.fire({
                     title: "خطا در ثبت نام وجود دارد",
+                    text: error.response.data.message || "مشکلی پیش آمده است.",
                     icon: "error",
                     confirmButtonText: "متوجه شدم"
                 });
             } else {
                 console.error("Error:", error.message);
+                Swal.fire({
+                    title: "خطای شبکه",
+                    text: "لطفاً اتصال اینترنت خود را بررسی کنید.",
+                    icon: "warning",
+                    confirmButtonText: "متوجه شدم"
+                });
             }
             throw error;
         });
@@ -82,13 +85,10 @@ export const registerWithCode = (code: string) => {
         code: code
     }
 
-    axios.defaults.withCredentials = true;
-
     return axios.post(`${baseUrl}register/`, userCode, {
         headers: {
             "Content-Type": "application/json",
         },
-        withCredentials: true
     })
         .then(response => {
             Swal.fire({
