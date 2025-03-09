@@ -21,7 +21,7 @@ const Slider = () => {
     const [sliderRef, instanceRef] = useKeenSlider({
         loop: true,
         slides: {
-            perView: 5,
+            perView: 4.5,
             spacing: 5,
         },
         breakpoints: {

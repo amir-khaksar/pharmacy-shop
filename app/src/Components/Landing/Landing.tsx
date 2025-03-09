@@ -1,5 +1,5 @@
 import {Typewriter} from "react-simple-typewriter";
-// import SearchIcon from "@mui/icons-material/Search";
+import {Link} from "react-router-dom";
 
 export default function Landing() {
     return (
@@ -27,38 +27,22 @@ export default function Landing() {
 
                 <div className="mt-8 w-full max-w-[440px] sm:max-w-[668px] lg:max-w-[840px] space-y-4">
 
-                    <div className="flex flex-wrap gap-3 justify-center">
-                        <a href="#"
+                    <div className="flex flex-wrap gap-3 justify-center mt-16">
+                        <Link to="/shop"
                            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm">
                             مشاهده محصولات
-                        </a>
-                        <button
+                        </Link>
+                        <Link to="/chat"
                             className="px-6 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600 transition-colors text-sm">
                             💬 مشاوره آنلاین
-                        </button>
+                        </Link>
                     </div>
 
-                    <div className="bg-purple-800/10 p-4 rounded-2xl border border-purple-500/20 text-center">
+                    <div className="bg-purple-800/10 p-4 rounded-2xl border border-purple-500/20 mt-12 text-center">
                         <p className="text-blue-600 font-medium mb-1">آدرس مرکز اصلی</p>
                         <p className="text-purple-600 text-sm">اصفهان، خیابان چهارباغ پایین، پلاک ۱</p>
                         <p className="text-purple-500 text-xs mt-2">ساعات کاری: ۸ صبح تا ۱۲ شب</p>
                     </div>
-
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center">
-                        <div className="p-2 bg-blue-500/10 rounded-lg">
-                            <p className="text-blue-600 text-sm">داروهای خاص</p>
-                        </div>
-                        <div className="p-2 bg-blue-500/10 rounded-lg">
-                            <p className="text-purple-600 text-sm">ارسال اکسپرس</p>
-                        </div>
-                        <div className="p-2 bg-blue-500/10 rounded-lg">
-                            <p className="text-blue-600 text-sm">چت آنلاین</p>
-                        </div>
-                        <div className="p-2 bg-purple-800/10 rounded-lg">
-                            <p className="text-purple-600 text-sm">پشتیبانی ۲۴/۷</p>
-                        </div>
-                    </div>
-
                 </div>
 
             </div>
