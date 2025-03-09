@@ -1,116 +1,104 @@
-import axios from 'axios';
-import Swal from 'sweetalert2';
+import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
+import Swal from "sweetalert2";
+import Cookies from "js-cookie";
 
 const baseUrl = "http://127.0.0.1:8000/accounts/";
 
-export const login = async (phone: string, password: string) => {
-    const userInfo = {
-        phone_number: phone,
-        password,
-    };
+const loginUser = async (data: { phone: string; password: string }) => {
+    const response = await axios.post(`${baseUrl}login/`, {
+        phone_number: data.phone,
+        password: data.password,
+    }, {
+        headers: { "Content-Type": "application/json" },
+    });
 
-    return await axios.post(`${baseUrl}login/`, userInfo, {
-        headers: {
-            "Content-Type": "application/json",
-        }
-    })
-        .then((response) => {
+    Cookies.set("refreshToken", response.data.refresh, { expires: 7, secure: true });
+    Cookies.set("accessToken", response.data.access, { expires: 1, secure: true });
 
-            localStorage.setItem("refreshToken", response.data.refresh);
-            localStorage.setItem("accessToken", response.data.access);
+    return response.data;
+};
 
+export const useLogin = () => {
+    return useMutation({
+        mutationFn: loginUser,
+        onSuccess: () => {
             Swal.fire({
                 title: "ورود موفقیت آمیز بود",
                 icon: "success",
-                confirmButtonText: "باشه"
+                confirmButtonText: "باشه",
             });
-            return response.data;
-        })
-        .catch((error) => {
-            if (error.response) {
-                console.log("Response error:", error.response.data);
-                Swal.fire({
-                    title: "خطا در ورود به حساب",
-                    icon: "error",
-                    confirmButtonText: "باشه"
-                });
-            } else {
-                console.error("Error:", error.message);
-            }
-            throw error;
-        });
+        },
+        onError: (error: any) => {
+            Swal.fire({
+                title: "خطا در ورود به حساب",
+                text: error.response?.data?.message || "مشکلی پیش آمده است.",
+                icon: "error",
+                confirmButtonText: "باشه",
+            });
+        },
+    });
 };
 
-export const register = async (fullName: string, phone: string, email: string, password: string) => {
-    const newUserInfo = {
-        full_name: fullName,
-        phone_number: phone,
-        email,
-        password,
-    };
-
-    return await axios.post(`${baseUrl}register/`, newUserInfo, {
-        headers: {
-            "Content-Type": "application/json",
-        },
-        withCredentials: true
-    })
-        .then((response) => {
-            console.log(response)
-            return response.data;
-        })
-        .catch((error) => {
-            if (axios.isAxiosError(error) && error.response) {
-                console.log("Response error:", error.response.data);
-                Swal.fire({
-                    title: "خطا در ثبت نام وجود دارد",
-                    text: error.response.data.message || "مشکلی پیش آمده است.",
-                    icon: "error",
-                    confirmButtonText: "متوجه شدم"
-                });
-            } else {
-                console.error("Error:", error.message);
-                Swal.fire({
-                    title: "خطای شبکه",
-                    text: "لطفاً اتصال اینترنت خود را بررسی کنید.",
-                    icon: "warning",
-                    confirmButtonText: "متوجه شدم"
-                });
-            }
-            throw error;
-        });
+const registerUser = async (data: { fullName: string; phone: string; email: string; password: string }) => {
+    const response = await axios.post(`${baseUrl}register/`, {
+        full_name: data.fullName,
+        phone_number: data.phone,
+        email: data.email,
+        password: data.password,
+    }, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+    });
+    return response.data;
 };
 
-export const registerWithCode = (code: string) => {
-    const userCode = {
-        code,
-    }
-
-    return axios.post(`${baseUrl}verify_code/`, userCode, {
-        headers: {
-            "Content-Type": "application/json",
+export const useRegister = () => {
+    return useMutation({
+        mutationFn: registerUser,
+        onSuccess: () => {
+            Swal.fire({
+                title: "ثبت نام موفقیت آمیز بود",
+                icon: "success",
+                confirmButtonText: "باشه",
+            });
         },
-        withCredentials: true
-    })
-        .then(response => {
+        onError: (error: any) => {
+            Swal.fire({
+                title: "خطا در ثبت نام",
+                text: error.response?.data?.message || "مشکلی پیش آمده است.",
+                icon: "error",
+                confirmButtonText: "متوجه شدم",
+            });
+        },
+    });
+};
+
+const verifyCode = async (code: string) => {
+    const response = await axios.post(`${baseUrl}verify_code/`, { code }, {
+        headers: { "Content-Type": "application/json" },
+        withCredentials: true,
+    });
+    return response.data;
+};
+
+export const useRegisterWithCode = () => {
+    return useMutation({
+        mutationFn: verifyCode,
+        onSuccess: () => {
             Swal.fire({
                 title: "ثبت نام با موفقیت انجام شد",
                 icon: "success",
                 confirmButtonText: "تأیید",
             });
-            return response.data;
-        })
-        .catch((error) => {
-            if (error.response) {
-                console.log("Response error:", error.response.data);
-                Swal.fire({
-                    title: "خطا در ثبت نام وجود دارد",
-                    icon: "error",
-                    confirmButtonText: "متوجه شدم"
-                });
-            } else {
-                console.error("Error:", error.message);
-            }
-            throw error;
-        })
-}
+        },
+        onError: (error: any) => {
+            Swal.fire({
+                title: "خطا در ثبت نام",
+                text: error.response?.data?.message || "مشکلی پیش آمده است.",
+                icon: "error",
+                confirmButtonText: "متوجه شدم",
+            });
+        },
+    });
+};

@@ -2,7 +2,7 @@ import Index from "./Pages/Index/Index";
 import AuthPage from "./Pages/Auth/AuthPage.tsx";
 import OTPForm from "./Pages/Auth/OtpForm.tsx";
 import Shop from "./Pages/Shop/Shop.tsx";
-import AboutPage from "./Pages/AboutUs.tsx";
+import AboutPage from "./Pages/AboutUs/AboutUs.tsx";
 
 const routes = [
     {path: "/", element: <Index/>},

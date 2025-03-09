@@ -1,7 +1,7 @@
-import {useState} from "react";
-import {motion} from "framer-motion";
-import {useForm, SubmitHandler} from "react-hook-form";
-import {login, register} from "./auth.ts";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { useForm, SubmitHandler } from "react-hook-form";
+import { useLogin, useRegister } from "./auth";
 import { useNavigate } from "react-router-dom";
 
 type LoginFormInputs = {
@@ -18,59 +18,57 @@ type RegisterFormInputs = {
 
 const AuthPage = () => {
     const [isLogin, setIsLogin] = useState(true);
-
     const navigate = useNavigate();
+
+    const { mutate: loginMutate } = useLogin();
+    const { mutate: registerMutate } = useRegister();
 
     const {
         register: loginRegister,
         handleSubmit: handleLoginSubmit,
-        formState: {errors: loginErrors},
+        formState: { errors: loginErrors },
     } = useForm<LoginFormInputs>();
 
     const {
         register: registerRegister,
         handleSubmit: handleRegisterSubmit,
-        formState: {errors: registerErrors},
+        formState: { errors: registerErrors },
     } = useForm<RegisterFormInputs>();
 
-    const onLogin: SubmitHandler<LoginFormInputs> = async (data) => {
-
-        const {phone, password} = data;
-
-        try {
-            await login(phone, password);
-            navigate("/")
-        } catch (error) {
-            console.error("Login failed:", error);
-        }
-
+    const onLogin: SubmitHandler<LoginFormInputs> = (data) => {
+        loginMutate(
+            { phone: data.phone, password: data.password },
+            {
+                onSuccess: () => navigate("/"),
+            }
+        );
     };
 
-    const onRegister: SubmitHandler<RegisterFormInputs> = async (data) => {
-
-        const {fullName, phone, email, password} = data;
-
-        try {
-            await register(fullName, phone, email, password);
-            navigate("/auth/otp");
-        } catch (error) {
-            console.error("Registration failed:", error);
-        }
+    const onRegister: SubmitHandler<RegisterFormInputs> = (data) => {
+        registerMutate(
+            {
+                fullName: data.fullName,
+                phone: data.phone,
+                email: data.email,
+                password: data.password,
+            },
+            {
+                onSuccess: () => navigate("/auth/otp"),
+            }
+        );
     };
 
     return (
-        <div
-            className="flex h-screen items-center justify-center bg-cover bg-center transition-colors duration-500 dark:bg-gray-900">
-            <div
-                className="relative w-[780px] h-[490px] bg-white dark:bg-gray-800 dark:text-white bg-opacity-90 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden">
+        <div className="flex h-screen items-center justify-center bg-cover bg-center transition-colors duration-500 dark:bg-gray-900">
+            <div className="relative w-[780px] h-[490px] bg-white dark:bg-gray-800 dark:text-white bg-opacity-90 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden">
                 <div className="flex w-full h-full relative">
                     {/* Animated Background Section */}
                     <motion.div
                         className={`absolute w-1/2 h-full bg-gradient-to-r from-blue-500 to-purple-500 flex flex-col items-center justify-center text-white transition-all duration-700 ${
                             isLogin ? "left-1/2" : "left-0"
                         }`}
-                        animate={{left: isLogin ? "50%" : "0%"}}
-                        transition={{ease: "easeInOut"}}
+                        animate={{ left: isLogin ? "50%" : "0%" }}
+                        transition={{ ease: "easeInOut" }}
                     >
                         <h2 className="text-2xl font-bold mb-4">
                             {isLogin ? "خوش آمدید!" : "به ما بپیوندید!"}

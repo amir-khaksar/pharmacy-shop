@@ -1,19 +1,19 @@
 import * as React from "react";
 import {useState} from "react";
 import OtpInput from "react-otp-input";
-import { registerWithCode } from "./auth.ts";
+import { useRegisterWithCode } from "./auth.ts";
 import {useNavigate} from "react-router-dom";
 
 export default function OTPForm() {
     const [otp, setOtp] = useState("");
-
     const navigate = useNavigate();
+    const { mutateAsync } = useRegisterWithCode();
 
     const registerWithOtp = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         try {
-            await registerWithCode(otp)
+            await mutateAsync(otp);
             navigate("/")
         } catch (error) {
             console.error("Error:", error);

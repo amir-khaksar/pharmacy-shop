@@ -31,10 +31,7 @@ export default function NavbarDesktop() {
                             <Link to="/shop">فروشگاه</Link>
                         </li>
                         <li>
-                            <Link to="#">درباره ما</Link>
-                        </li>
-                        <li>
-                            <Link to="#">تماس با ما</Link>
+                            <Link to="/about-us">درباره ما</Link>
                         </li>
                     </ul>
                 </nav>
